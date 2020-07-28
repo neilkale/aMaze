@@ -1,5 +1,5 @@
-package aMaze;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Maze {
@@ -33,6 +33,13 @@ public class Maze {
 		maze = new int[sizeX][sizeY];
 		maze = createMaze();
 	}
+	
+	Maze(Maze orig) 
+	{
+		maze = orig.getMaze();
+		sizeX = orig.getSizeX();
+		sizeY = orig.getSizeY();
+	}
 
 	/**
 	 * 
@@ -42,6 +49,10 @@ public class Maze {
 		return drill(1, 1);
 	}
 	
+	/**
+	 * @return a clone of a given maze
+	 */
+		
 	/*************** Getters and Setters *****************/
 
 	public int getSizeX() {
@@ -68,12 +79,21 @@ public class Maze {
 		return maze[x][y];
 	}
 	
+	public int getPoint(int[] pt) {
+		return maze[pt[0]][pt[1]];
+	}
+	
+	public int getPoint(Integer[] pt) {
+		return maze[pt[0]][pt[1]];
+	}
+	
 	/**
 	 * Sets a certain point in a maze to a certain value
 	 * @param x x-coordinate of the point
 	 * @param y y-coordinate of the point
 	 * @param k new value of the point
-	 */
+	 **/
+	
 	public void setPoint(int x, int y, int k) {
 		this.maze[x][y] = k;
 	}
@@ -86,8 +106,8 @@ public class Maze {
 		for (int i = 0; i < sizeY; i++) {
 			for (int j = 0; j < sizeX; j++) {
 				if (maze[j][i] == 1) System.out.print("  ");
-				else if (maze[j][i] == 2) System.out.print("@ ");
-				else System.out.print("+ ");
+				else if (maze[j][i] == 2) System.out.print("@ "); //formerly "@ "
+				else System.out.print("+ "); //formerly "+ "
 			}
 			System.out.println();
 		}
